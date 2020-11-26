@@ -1,5 +1,6 @@
 # files
 *.pyc
+.vscode/setting.json
 
 # folders
 fakenew_dataset/
