@@ -39,6 +39,9 @@ def preprocessing(path, tag, category):
     ser = df['news_url'].str.split('/').str[0].str.strip('wwwcom').str.split('.').apply(max_str_in_list)
     df['news_media'] = ser
 
+    # add nes cat
+    df['nes_category'] = '政治' if category == 'gissipcop' else 'politifact'
+
     # drop col # change to config
     df = df.drop(columns='tweet_ids')
 
@@ -47,6 +50,7 @@ def preprocessing(path, tag, category):
     df['text'] = ser
 
     # add credibility
-    df['credibility'] = 1 if tag=='real' else 0
+    df['credibility'] = 1 if tag == 'real' else 0
     return df
+
 
