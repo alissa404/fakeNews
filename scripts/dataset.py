@@ -3,6 +3,7 @@ import numpy as np
 import json 
 from FakeNewsProcesser.utils import preprocessing
 
+
 def find_texts(id, tag, cat):
     datasetpath = f'fakenew_dataset/fakenewsnet_dataset_1/{cat}/{tag}/{id}/tweets'
     jsons = os.listdir(datasetpath)
@@ -34,5 +35,4 @@ if __name__ == '__main__':
     CATEGORY = PATH.rstrip('.csv').split('/')[1].rstrip('_fake')
 
     df = preprocessing(PATH, tag=TAG, category=CATEGORY)
-    ser = df['id'].apply(find_text, tag=TAG, cat=CATEGORY)
-
+    print(df)
