@@ -34,7 +34,8 @@ if __name__ == '__main__':
     # PATH = 'data/origin/gossipcop_fake.csv'
     PATH = sys.argv[1]
     TAG = PATH.rstrip('.csv').split('_')[-1]
-    CATEGORY = PATH.rstrip('.csv').split('/')[1].rstrip('_fake')
+    CATEGORY = PATH.rstrip('.csv').split('/')[-1].rstrip('_fake')
     # add savepath
 
     df = preprocessing(PATH, tag=TAG, category=CATEGORY)
+    df.to_csv('./testout.csv')
