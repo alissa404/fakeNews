@@ -20,8 +20,8 @@ def max_str_in_list(l : list):
 #     return text_dict
 
 
-def find_text(id, tag, cat):
-    datasetpath = f'fakenew_dataset/{cat}/{tag}/{id}/tweets'
+def find_text(id, dataset, label):
+    datasetpath = f'fakenew_dataset/{dataset}/{label}/{id}/tweets'
     try:
         json_file = os.listdir(datasetpath)[0]
 
@@ -32,7 +32,7 @@ def find_text(id, tag, cat):
     return text
 
 
-def preprocessing(path, tag, category):
+def preprocessing(path, dataset, label):
     df = pd.read_csv(path).dropna()
 
     # parsing news media
@@ -40,17 +40,17 @@ def preprocessing(path, tag, category):
     df['news_media'] = ser
 
     # add nes cat
-    df['nes_category'] = '政治' if category == 'gissipcop' else '娛樂'
+    df['news_dataset'] = '政治' if dataset == 'gissipcop' else '娛樂'
 
     # drop col # change to config
     df = df.drop(columns='tweet_ids')
 
     # add text
-    ser = df['id'].apply(find_text, tag=tag, cat=category)
+    ser = df['id'].apply(find_text, label=label, cat=dataset)
     df['text'] = ser
 
     # add credibility
-    df['credibility'] = 1 if tag == 'real' else 0
+    df['credibility'] = 1 if label == 'real' else 0
     return df
 
 
