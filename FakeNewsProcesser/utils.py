@@ -52,3 +52,7 @@ def preprocessing(path, tag, category):
     # add credibility
     df['credibility'] = 1 if tag == 'real' else 0
     return df
+
+
+def merge_dataframe():
+    pass
