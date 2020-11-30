@@ -45,8 +45,10 @@ def max_str_in_list(l : list):
 
 def find_text(id, dataset, label):
     path = f'fakenew_dataset/{dataset}/{label}/{id}/'
+    print(os.listdir(path))
     try:
         jsonfile = os.path.join(path, os.listdir(path)[0])
+
         with open(jsonfile) as f:
             text = json.load(f)['text']
     except:
@@ -70,7 +72,7 @@ def preprocessing(config: ConfigParser, flag='gossipcop_fake'):
     df['news_media'] = ser
 
     # add nes cat
-    df['news_dataset'] = '政治' if DATASET == 'gissip' else '娛樂'
+    df['news_dataset'] = 'politics' if DATASET == 'gossip' else 'entertainment'
 
     # drop col # change to config
     df = df.drop(columns='tweet_ids')

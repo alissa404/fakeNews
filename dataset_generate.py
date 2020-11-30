@@ -12,4 +12,7 @@ if __name__ == '__main__':
     config.read_file(open('config.cfg'))
 
     # preprocessing dataset
-    df = preprocessing(config)
+    df = preprocessing(config, flag='gossipcop_fake')
+    print(df.keys())
+    print(df.head())
+    print(df['news_url'])
